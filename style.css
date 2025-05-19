@@ -196,3 +196,40 @@ body {
         image-rendering: auto;
     }
 
+html {
+    scroll-behavior: smooth;
+}
+h3 {
+    color: #00BFFF; 
+    font-size: 2rem; 
+
+}
+.mekan-bilgi p {
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+.mekan-bilgi {
+    min-height: 100vh;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.mekan-img {
+    margin-top: 20px;
+    border-radius: 12px;
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.mekan-img {
+    display: block;
+    margin: 20px auto;
+    max-width: 80%;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+    border-radius: 12px;
+    background-color: black; 
+}
