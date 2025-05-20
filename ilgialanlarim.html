@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Favori Dizilerim</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding: 30px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #00bfff;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        p, h2 {
+            color: #f0f0f0;
+            font-size: 18px;
+        }
+
+        .dizi {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 20px;
+        }
+
+            .dizi img {
+                width: 200px;
+                border-radius: 12px;
+            }
+
+        .dizi-info {
+            max-width: 700px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Favori Dizilerim</h1>
+    <div id="diziler"></div>
+
+    <script>
+        const apiKey = "e9866a27a8b062a699a52c2c0dbf946e"; //API KEY
+        const favoriDiziler = [
+            "House of Cards",
+            "Breaking Bad",
+            "Game of Thrones",
+            "Sherlock",
+            "Peaky Blinders",
+            "Designated Survivor",
+            "The Sopranos",
+            "Vikings"
+        ];
+
+        const diziAlani = document.getElementById("diziler");
+
+        favoriDiziler.forEach(diziAdi => {
+            const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&language=tr-TR&query=${encodeURIComponent(diziAdi)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const dizi = data.results[0]; 
+                    if (dizi) {
+                        const posterURL = dizi.poster_path
+                            ? `https://image.tmdb.org/t/p/w500${dizi.poster_path}`
+                            : "https://via.placeholder.com/200x300?text=Görsel+Yok";
+                        const diziHTML = `
+                        <div class="dizi">
+                         <img src="${posterURL}" alt="${dizi.name}">
+                            <div class="dizi-info">
+                                 <h2>${dizi.name}</h2>
+                                     <p><strong>Puan:</strong> ${dizi.vote_average}</p>
+                                         <p>${dizi.overview || "Açıklama bulunamadı."}</p>
+                         </div>
+                         </div>
+                        `;
+                        diziAlani.innerHTML += diziHTML;
+                    } else {
+                        diziAlani.innerHTML += `<div class="dizi"><h2>${diziAdi}</h2><p>Bu dizi bulunamadı.</p></div>`;
+                    }
+                });
+        });
+    </script>
+</body>
+</html>
