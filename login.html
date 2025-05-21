@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Sayfası</title>
+    <style>
+        .login-body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('images/sau-resim-23.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 300px;
+            height: 290px;
+        }
+
+            .login-container input[type="text"],
+            .login-container input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 10px;
+                border: 1px solid #ccc;
+            }
+
+            .login-container input[type="submit"] {
+                width: 100%;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                .login-container input[type="submit"]:hover {
+                    background-color: #0056b3;
+                }
+    </style>
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h2>Giriş Yap</h2>
+        <form action="login.php" method="POST" onsubmit="return validateForm()">
+            <input type="text" id="email" name="email" placeholder="Öğrenci Maili">
+            <input type="password" id="sifre" name="sifre" placeholder="Şifre">
+            <input type="submit" value="Giriş Yap">
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById("email").value.trim();
+            const sifre = document.getElementById("sifre").value.trim();
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@ogr\.sakarya\.edu\.tr$/;
+
+            if (email === "" || sifre === "") {
+                alert("Kullanıcı adı ve şifre boş bırakılamaz.");
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert("Geçerli bir öğrenci mail adresi giriniz (@ogr.sakarya.edu.tr)");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

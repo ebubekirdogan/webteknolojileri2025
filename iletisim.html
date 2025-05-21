@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>İletişim</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> <!--vue-->
+
+</head>
+<body class="iletisim-body">
+    <div class="iletisim-kutu">
+        <div id="app">
+            <!--vue-->
+            <h2 class="iletisim-baslik">İletişim Formu</h2>
+            <form id="iletisimFormu" action="iletisim_sonuc.php" method="POST" onsubmit="return kontrolEdildiMi()">
+
+                <label for="ad">Ad:</label>
+                <input type="text" name="ad" id="ad" v-model="ad" oninput="kontrolSifirla()">
+
+                <label for="soyad">Soyad:</label>
+                <input type="text" name="soyad" id="soyad" v-model="soyad" oninput="kontrolSifirla()">
+
+                <label for="email">E-posta:</label>
+                <input type="text" name="email" id="email" v-model="email" oninput="kontrolSifirla()">
+
+                <label for="telefon">Telefon:</label>
+                <input type="text" name="telefon" id="telefon" v-model="telefon" oninput="kontrolSifirla()">
+
+                <label for="konu">Konu:</label>
+                <select name="konu" id="konu" v-model="konu" oninput="kontrolSifirla()">
+                    <option value="">Lütfen seçiniz</option>
+                    <option value="soru">Soru</option>
+                    <option value="oneri">Öneri</option>
+                    <option value="sikayet">Şikayet</option>
+                    <option value="diger">Diğer</option>
+                </select>
+
+                <label for="mesaj">Mesajınız:</label>
+                <textarea name="mesaj" id="mesaj" rows="4" v-model="mesaj" oninput="kontrolSifirla()"></textarea>
+
+                <div class="iletisim-butons">
+                    <button type="submit">Gönder</button>
+                    <button type="reset" onclick="kontrolSifirla()">Temizle</button>
+                    <button type="button" onclick="jsKontrol()">JS ile Kontrol Et</button>
+                    <button type="button" @click="vueKontrol()">Vue ile Kontrol Et</button>
+                </div>
+
+            </form>
+
+
+
+        </div>
+        <script>
+            function jsKontrol() {
+                const ad = document.getElementById("ad").value.trim();
+                const soyad = document.getElementById("soyad").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const telefon = document.getElementById("telefon").value.trim();
+                const konu = document.getElementById("konu").value;
+                const mesaj = document.getElementById("mesaj").value.trim();
+
+                let hataMesaji = "";
+
+
+                if (!ad || !soyad || !email || !telefon || !konu || !mesaj) {
+                    hataMesaji += "- Tüm alanlar doldurulmalıdır.\n";
+                }
+
+
+                const harfRegex = /^[a-zA-ZçÇğĞıİöÖşŞüÜ\s]+$/;
+                if (ad && !harfRegex.test(ad)) {
+                    hataMesaji += "- Ad kısmı sadece harf içermelidir.\n";
+                }
+                if (soyad && !harfRegex.test(soyad)) {
+                    hataMesaji += "- Soyad kısmı sadece harf içermelidir.\n";
+                }
+
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email && !emailRegex.test(email)) {
+                    hataMesaji += "- E-posta geçerli formatta değil.\n";
+                }
+
+
+                const telefonRegex = /^[0-9]{12}$/;
+                if (telefon && !telefonRegex.test(telefon)) {
+                    hataMesaji += "- Lütfen telefon numaranızın başına alan kodu ekleyiniz.\n";
+                }
+
+
+                if (hataMesaji) {
+                    alert("Hatalar:\n" + hataMesaji);
+                } else {
+                    formKontrolEdildi = true;
+                    alert("Form JS kontrolünden başarıyla geçti ✅");
+                }
+            }
+        </script>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    ad: '',
+                    soyad: '',
+                    email: '',
+                    telefon: '',
+                    konu: '',
+                    mesaj: '',
+                    hataMesaji: ''
+                },
+                methods: {
+                    vueKontrol() {
+                        this.hataMesaji = '';
+
+
+                        if (!this.ad || !this.soyad || !this.email || !this.telefon || !this.konu || !this.mesaj) {
+                            this.hataMesaji += "- Tüm alanlar doldurulmalıdır.\n";
+                        }
+
+                        const harfRegex = /^[a-zA-ZçÇğĞıİöÖşŞüÜ\s]+$/;
+                        if (this.ad && !harfRegex.test(this.ad)) {
+                            this.hataMesaji += "- Ad sadece harf içermelidir.\n";
+                        }
+
+                        if (this.soyad && !harfRegex.test(this.soyad)) {
+                            this.hataMesaji += "- Soyad sadece harf içermelidir.\n";
+                        }
+
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (this.email && !emailRegex.test(this.email)) {
+                            this.hataMesaji += "- E-posta formatı geçerli değil.\n";
+                        }
+
+                        const telefonRegex = /^[0-9]{12}$/;
+                        if (this.telefon && !telefonRegex.test(this.telefon)) {
+                            this.hataMesaji += "- Lütfen telefon numaranızın başına alan kodu ekleyiniz.\n";
+                        }
+
+
+                        if (this.hataMesaji) {
+                            alert("Hatalar:\n" + this.hataMesaji);
+                        } else {
+                            formKontrolEdildi = true;
+                            alert("Form Vue kontrolünden başarıyla geçti ✅");
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            let formKontrolEdildi = false;
+
+            function kontrolEdildiMi() {
+                if (!formKontrolEdildi) {
+                    alert("Lütfen önce 'JS ile Kontrol Et' ya da 'Vue ile Kontrol Et' butonuna basarak formu doğrulayın.");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+
+        <script>
+            function kontrolSifirla() {
+                formKontrolEdildi = false;
+            }
+        </script>
+
+        
+
+
+</body>
+</html>
+
+</body>
+</html>

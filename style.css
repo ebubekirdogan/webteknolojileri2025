@@ -240,3 +240,128 @@ h3 {
     margin-bottom: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
+
+.login-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('images/sakaryauniversitesi54.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+}
+
+    .login-body .login-container {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        text-align: center;
+        width: 300px;
+    }
+
+    .login-body input[type="text"],
+    .login-body input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .login-body input[type="submit"] {
+        width: 100%;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .login-body input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+body.iletisim-body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.iletisim-kutu {
+    width: 50%;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.iletisim-baslik {
+    text-align: center;
+    font-size: 28px;
+    color: #3fa9f5;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+    form label {
+        font-weight: 600;
+        color: white;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #1e1e1e;
+        color: white;
+        font-size: 16px;
+    }
+
+.iletisim-butons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+    .iletisim-butons button {
+        padding: 10px 15px;
+        background-color: #3fa9f5;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .iletisim-butons button:hover {
+            background-color: #2a7cc0;
+        }
+.sehrim-baslik {
+    color: #00bfff;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 0px; 
+    font-family: 'Segoe UI', sans-serif;
+}
