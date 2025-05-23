@@ -12,13 +12,6 @@
             line-height: 1.6;
         }
 
-        h1 {
-            font-size: 36px;
-            color: #00bfff;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
         p, h2 {
             color: #f0f0f0;
             font-size: 18px;
@@ -41,6 +34,13 @@
         .dizi-info {
             max-width: 700px;
         }
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: #00bfff;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
     </style>
 
 </head>
@@ -69,21 +69,21 @@
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    const dizi = data.results[0]; 
+                    const dizi = data.results[0];
                     if (dizi) {
                         const posterURL = dizi.poster_path
                             ? `https://image.tmdb.org/t/p/w500${dizi.poster_path}`
                             : "https://via.placeholder.com/200x300?text=Görsel+Yok";
                         const diziHTML = `
-                        <div class="dizi">
-                         <img src="${posterURL}" alt="${dizi.name}">
-                            <div class="dizi-info">
-                                 <h2>${dizi.name}</h2>
-                                     <p><strong>Puan:</strong> ${dizi.vote_average}</p>
-                                         <p>${dizi.overview || "Açıklama bulunamadı."}</p>
-                         </div>
-                         </div>
-                        `;
+                            <div class="dizi">
+                             <img src="${posterURL}" alt="${dizi.name}">
+                                <div class="dizi-info">
+                                     <h2>${dizi.name}</h2>
+                                         <p><strong>Puan:</strong> ${dizi.vote_average}</p>
+                                             <p>${dizi.overview || "Açıklama bulunamadı."}</p>
+                             </div>
+                             </div>
+                            `;
                         diziAlani.innerHTML += diziHTML;
                     } else {
                         diziAlani.innerHTML += `<div class="dizi"><h2>${diziAdi}</h2><p>Bu dizi bulunamadı.</p></div>`;
@@ -91,5 +91,6 @@
                 });
         });
     </script>
+
 </body>
 </html>

@@ -12,15 +12,16 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     padding: 60px 10% 40px;
-    height: auto; 
+    height: auto;
+    background-color: black;
 }
 
 
 .hero-name {
-    font-size: 4rem;
     font-weight: bold;
     color: #fff;
     margin: 0;
+    font-size: clamp(2rem, 6vw, 4rem);
 }
 
 .hero-subtitle {
@@ -54,7 +55,7 @@ body {
     }
 .about {
     padding: 40px 10% 20px;
-    background-color: #111;
+    background-color: black;
     color: #e0e0e0;
 }
 
@@ -118,12 +119,19 @@ body {
 }
 
 .image-wrapper {
-    flex: 0 0 auto;
-    max-width: 300px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    max-width: 350px;
 }
 
     .image-wrapper.wide {
-        max-width: 500px; 
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        max-width: 600px;
     }
 
     .image-wrapper img {
@@ -359,9 +367,35 @@ form {
 .sehrim-baslik {
     color: #00bfff;
     font-weight: bold;
-    font-size: 32px;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     text-align: left;
     margin-top: 50px;
-    margin-left: 0px; 
+    margin-left: 0px;
     font-family: 'Segoe UI', sans-serif;
 }
+.site-footer {
+    background-color: #000;
+    color: #aaa;
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+    border-top: 1px solid #333;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+}
+
+    .site-footer a {
+        color: #00aaff;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
